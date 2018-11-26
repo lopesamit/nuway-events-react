@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.scss';
 import { Link } from 'react-router-dom';
 import firebase from './firebase'
+import moment from 'moment'
 
 require('firebase/database');
 require('dotenv').config()
@@ -31,15 +32,22 @@ class Landing extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
+                <h1 className="text-center"> All Events</h1>
                 <div className="m-3 row">
                     {this.state.events.map((item, index) => {
                         return (
-                            <div className="border col col-lg-3 col-md-4 d-inline-block event-container m-2 p-2" key={index}>
-                                <h3>{item.title}</h3>
-                                <p>{item.description}</p>
-                                <Link to={{ pathname: '/event', state: item }} className=""> <b>More details</b> </Link>
-
+                            <div className="border col-12 col-lg-3 col-md-4 d-inline-block event-container m-2 p-2 mx-auto" key={index}>
+                                <img alt="img" src={item.posterImage} className="img-fluid"></img>
+                                <div>
+                                    <h5> {moment(item.start_date).format('MMM-DD')}</h5>
+                                </div>
+                                <div>
+                                    <h3>{item.title}</h3>
+                                    {/* <p>{item.description}</p> */}
+                                </div>
+                                {/* <Link to={{ pathname: `/event?${item.title}`, state: item }} className=""> <b>More details</b> </Link> */}
+                                <Link to={{ pathname: `/event`, state: item }} className=""> <b>More details</b> </Link>
                             </div>
                         )
                     })}

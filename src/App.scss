@@ -34,3 +34,20 @@
 .event-container{
   cursor: pointer;
 }
+
+.container {
+  @media (max-width: 520px) {
+    h3 {
+      font-size: 1rem;
+    }
+  }
+}
+.event-wrapper {
+  background-image: linear-gradient(rgb(147, 190, 229), rgb(136, 226, 166));
+  .event-details-wrapper {
+    background-color: lightgrey;
+  }
+  .btn-icon {
+    filter: invert(1)
+  }
+}

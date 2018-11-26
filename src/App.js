@@ -16,11 +16,12 @@ class App extends Component {
     }
   }
 
-
   render() {
     return (
       <Router>
         <div>
+          <div>
+          </div>
           <Route exact path='/' component={Landing} />
           <Route exact path='/event' component={Event} />
         </div>
