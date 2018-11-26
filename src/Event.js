@@ -8,16 +8,13 @@ class Event extends Component {
     constructor(props) {
       super(props)
       this.state = {
-        events: []
+        event: {}
       }
     }
     componentDidMount(){
-
-        console.log(this.props.locations)
-        console.log(document.referrer.split('id=')[1])
-
-        if(this.props.location) {
-            const ref = firebase.database().ref('events').orderByChild("id").equalTo(3);
+        const eventId = this.props.match.params.id
+        if(!this.props.location.state) {
+            const ref = firebase.database().ref('events').orderByChild('id').equalTo(eventId*1);
             ref.on("value", (snapshot) => {
                 if (snapshot.val()) {
                     Object.values(snapshot.val()).forEach((item) => {
@@ -27,25 +24,26 @@ class Event extends Component {
                     })
                 }
             })
+        } else {
+            this.setState({
+                event: this.props.location.state
+            })
         }
-
-        console.log(this.state.event)
-
     }
 
     render() {
-        // if( !this.state.event) {
-        //     return null
-        // }
-        const event = this.props.location.state
+        if( !this.state.event) {
+            return null
+        }
+        const event = this.state.event
         const start_date = moment(event.start_date).format('MMM-D')
         const end_date = moment(event.end_date).format('MMM-D')
         return(
-            <div className="event-wrapper p-5">
+            <div className="event-wrapper p-2 p-md-5">
                 <div className="container rounded bg-white p-0">
                     <div className="event-details-wrapper rounded">
-                        <img className="d-inline-block col-6 p-0 align-top" alt={event.title} src={event.flyerImage}></img>
-                        <div className="d-inline-block col-5">
+                        <img className="d-inline-block col-12 col-md-6 p-0 align-top" alt={event.title} src={event.flyerImage}></img>
+                        <div className="d-inline-block col-12 col-md-5">
                             <div>
                                 <h4 className="mt-3 text-black-50">{start_date}</h4>
                                 <hr></hr>
@@ -54,7 +52,7 @@ class Event extends Component {
                                 <p> {event.description}</p>
                                 <hr></hr>
                                 <p> At {event.location}</p>
-                                { start_date === end_date ?
+                                {start_date === end_date ?
                                     null
                                     :
                                     <p> From {start_date} to {end_date}</p>
@@ -63,7 +61,7 @@ class Event extends Component {
                         </div>
                         
                     </div>
-                    <div className="p-5">
+                    <div className="p-2 p-md-5">
                         <h3> Flyer Images</h3>
                         
                         <div id="flyerImages" className="carousel slide" data-ride="carousel">
