@@ -61,6 +61,19 @@ class Event extends Component {
                         </div>
                         
                     </div>
+                    {/* <div className="p-2 p-md-5 bg-dark text-white">
+                        Address 
+                            
+                            {event.address ? 
+                                <div>
+                                    <p>{event.address.name} <br></br>
+                                    {event.address.line1} <br></br>
+                                    {event.address.city} <br></br>
+                                    {event.address.zip}</p> 
+                                </div>
+                                : null
+                            }
+                    </div> */}
                     <div className="p-2 p-md-5">
                         <h3> Flyer Images</h3>
                         

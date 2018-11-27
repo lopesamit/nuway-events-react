@@ -47,12 +47,10 @@ class Landing extends Component {
                 start_date.toLowerCase().includes(searchString.toLowerCase())
             )
         })
-
         await this.setState({
             searchedEvents: searchedEvents,
             isSearching: true
         })
-
     }
 
     render() {
@@ -71,37 +69,37 @@ class Landing extends Component {
                     {this.state.isSearching ?
                         this.state.searchedEvents.map((item, index) => {
                             return (
-                                <div className="col-12 col-lg-3 col-md-4 d-inline-block event-container p-2" key={index}>
+                                <Link to={{ pathname: `/event/id=${item.id}/${item.title}`, state: item }}
+                                    className="col-12 col-lg-3 col-md-4 d-inline-block event-container p-2" key={index}>
                                     <div className="border p-2 rounded">
                                         <div className="event-image" style={{backgroundImage : `url(${item.posterImage})`}}>
                                         </div>
                                         <div>
-                                            <h5> {moment(item.start_date).format('MMM-DD')}</h5>
+                                            <h6 className="text-primary"> {moment(item.start_date).format('MMM-DD')}</h6>
                                         </div>
                                         <div>
-                                            <h4>{item.title}</h4>
+                                            <h5 className="text-black-50">{item.title}</h5>
                                         </div>
-                                        <Link to={{ pathname: `/event/id=${item.id}/${item.title}`, state: item }} className=""> <b>More details</b> </Link>
                                     </div>
-                                </div>
+                                </Link>
                             )
                         })
                     :
                         this.state.events.map((item, index) => {
                             return (
-                                <div className="col-12 col-lg-3 col-md-4 d-inline-block event-container p-2" key={index}>
+                                <Link to={{ pathname: `/event/id=${item.id}/${item.title}`, state: item }} 
+                                    className="col-12 col-lg-3 col-md-4 d-inline-block event-container p-2" key={index}>
                                     <div className="border p-2 rounded">
                                         <div className="event-image" style={{backgroundImage : `url(${item.posterImage})`}}>
                                         </div>
                                         <div>
-                                            <h5> {moment(item.start_date).format('MMM-DD')}</h5>
+                                            <h6 className="text-primary"> {moment(item.start_date).format('MMM-DD')}</h6>
                                         </div>
                                         <div>
-                                            <h4>{item.title}</h4>
+                                            <h5 className="text-black-50">{item.title}</h5>
                                         </div>
-                                        <Link to={{ pathname: `/event/id=${item.id}/${item.title}`, state: item }} className=""> <b>More details</b> </Link>
                                     </div>
-                                </div>
+                                </Link>
                             )
                         })
                     }
