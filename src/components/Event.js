@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment'
-import firebase from './firebase'
+import firebase from '../firebase'
 require('firebase/database');
 
 

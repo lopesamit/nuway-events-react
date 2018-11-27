@@ -3,8 +3,8 @@ import logo from './logo.svg';
 import './App.scss';
 import firebase from './firebase'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Event from './Event'
-import Landing from './Landing'
+import Event from './components/Event'
+import Landing from './components/Landing'
 require('firebase/database');
 require('dotenv').config()
 
