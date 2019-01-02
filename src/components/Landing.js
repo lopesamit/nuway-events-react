@@ -41,7 +41,6 @@ class Landing extends Component {
         const events = this.state.events
         var searchedEvents = events.filter((item) => {
             const start_date =  moment(item.start_date).format('MMMM-DD')
-            console.log(start_date)
             return (
                 item.title.toLowerCase().includes(searchString.toLowerCase()) ||
                 start_date.toLowerCase().includes(searchString.toLowerCase())

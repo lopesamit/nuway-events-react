@@ -5,6 +5,7 @@ import firebase from './firebase'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Event from './components/Event'
 import Landing from './components/Landing'
+import Navbar from './components/Navbar'
 require('firebase/database');
 require('dotenv').config()
 
@@ -22,6 +23,7 @@ class App extends Component {
         <div>
           <div>
           </div>
+          <Navbar />
           <Route exact path='/' component={Landing} />
           <Route exact path='/event/id=:id/:eventName' component={Event} />
         </div>
